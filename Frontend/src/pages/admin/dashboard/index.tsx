@@ -36,6 +36,7 @@ const Dashboard = () => {
 
   const { mutate: reinviteUser, isLoading: reinviteLoading } =
     useReinviteUser();
+  const { handleSubmit, reset } = methods;
 
   useEffect(() => {
     if (
@@ -49,9 +50,7 @@ const Dashboard = () => {
       setShowModal(false);
       reset();
     }
-  }, [userResponse]);
-
-  const { handleSubmit, reset } = methods;
+  }, [userResponse, reset]);
 
   const filteredUsres =
     users?.data?.users.length > 0 &&
@@ -68,7 +67,7 @@ const Dashboard = () => {
 
   return (
     <>
-    <Header/>
+      <Header />
       <div className="flex">
         <Sidebar />
         <div className="w-[86%] ml-auto p-6 pt-20">
@@ -160,7 +159,7 @@ const Dashboard = () => {
                       >
                         <button
                           disabled={reinviteLoading}
-                          onClick={() =>reInviteHandler(d.email, idx)}
+                          onClick={() => reInviteHandler(d.email, idx)}
                         >
                           {reinviteLoading && userIndex === idx ? (
                             <SmallLoader />
@@ -181,6 +180,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
-
-// export default withAuth(Dashboard);
+export default withAuth(Dashboard);
